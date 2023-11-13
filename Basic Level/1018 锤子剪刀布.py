@@ -26,33 +26,46 @@ J J
 B B
 '''
 
+
+class WinInfo:
+    def __init__(self):
+        self.counts = [0 for i in range(3)]
+
+    def increase(self, gesture):
+        self.counts[gestures.index(gesture)] += 1
+
+    def most_index(self):
+        max_count = max(self.counts)
+        for i, count in enumerate(self.counts):
+            if count == max_count:
+                return i
+
+
 if __name__ == '__main__':
-    gestures = ['C', 'J', 'B']
+    gestures = ['B', 'C', 'J']
     N = int(input())
-    win_gestures = [[] for i in range(2)]
-    results = [[0] * 3] * 2
+    A_info = WinInfo()
+    B_info = WinInfo()
+    results = [0 for i in range(3)]
     for i in range(N):
         gesture_A, gesture_B = input().split()
         if gesture_A == gesture_B:
             # 平局
-            results[0][2] += 1
-            results[1][2] += 1
-        elif (gestures.index(gesture_A) + 1) % len(gestures) == gestures.index(gesture_B):
+            results[1] += 1
+            # results[1][1] += 1
+        elif (gestures.index(gesture_A) + 1) % 3 == gestures.index(gesture_B):
             # A胜B负
-            results[0][0] += 1
-            results[1][1] += 1
-            win_gestures[0].append(gesture_A)
+            results[0] += 1
+            A_info.increase(gesture_A)
         else:
             # A负B胜
-            results[0][1] += 1
-            results[1][0] += 1
-            win_gestures[1].append(gesture_A)
-    print(' '.join(list(map(str, results[0]))))
-    print(' '.join(list(map(str, results[1]))))
-    win_gesture = []
-    for gesture in win_gestures:
-        counts = [gesture.count(g for g in gestures)]
-        win_gesture.append(gestures[gesture.index(counts)])
+            results[2] += 1
+            B_info.increase(gesture_B)
+    # 甲：胜平负
+    print(' '.join(list(map(str, results))))
+    # 乙：胜平负
+    results.reverse()
+    print(' '.join(list(map(str, results))))
 
-    print(' '.join(list(map(max, win_gestures))))
-    print(' '.join(win_gesture))
+    most_gesture = []
+    print(gestures[A_info.most_index()] + ' ' + gestures[B_info.most_index()])
