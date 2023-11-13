@@ -73,7 +73,7 @@ if __name__ == '__main__':
         elif candidate.score_de >= H > candidate.score_cai:
             # 德胜才
             rank_index = 1
-        elif H > candidate.score_de > candidate.score_cai:
+        elif H > candidate.score_de >= candidate.score_cai:
             # 才德兼亡.但尚有德胜才
             rank_index = 2
         else:

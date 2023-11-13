@@ -27,7 +27,7 @@ if __name__ == '__main__':
     worst_score = 100
     worst_student_info = None
     for i in range(int(input())):
-        info, score = input().rsplit(' ', 1)
+        info, score = input().rsplit(maxsplit=1)
         score = int(score)
         if score > best_score:
             best_score = score
