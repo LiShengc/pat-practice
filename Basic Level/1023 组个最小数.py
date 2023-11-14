@@ -12,3 +12,11 @@
 输出样例：
 10015558
 '''
+import re
+
+if __name__ == '__main__':
+    n = ''.join([str(i) * d for i, d in enumerate(list(map(int, input().split())))])
+    if '0' in n:
+        i = n.count('0')
+        n = n[i] + n[1:i] + n[0] + n[i + 1:]
+    print(n)
