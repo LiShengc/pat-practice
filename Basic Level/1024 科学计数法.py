@@ -35,5 +35,4 @@ if __name__ == '__main__':
         n = '0.' + b.zfill(abs(p) + len(b) - 1)
     else:
         n = b
-
     print(signal + str(n))
