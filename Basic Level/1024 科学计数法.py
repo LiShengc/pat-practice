@@ -24,10 +24,15 @@ if __name__ == '__main__':
     signal, b = '-' if base[0] == '-' else '', base[1:]
     p = int(power)
     if p > 0:
-        n = ''.join(b.split('.')) + '0' * (p - len(b.split('.')[1]))
+        i, f = b.split('.')
+        n = ''.join(b.split('.'))
+        if p >= len(f):
+            n += '0' * (p - len(b.split('.')[1]))
+        else:
+            n = n[:p + 1] + '.' + n[p + 1:]
     elif p < 0:
         b = ''.join(b.split('.'))
-        n = '0.' + b.zfill(abs(p) + len(b) + 1)
+        n = '0.' + b.zfill(abs(p) + len(b) - 1)
     else:
         n = b
 
