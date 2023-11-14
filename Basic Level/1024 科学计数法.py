@@ -16,7 +16,6 @@
 输出样例 2：
 -12000000000
 '''
-import re
 
 if __name__ == '__main__':
     n = input()
