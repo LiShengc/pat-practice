@@ -22,23 +22,22 @@ Steve 1967/11/20
 from datetime import datetime
 
 if __name__ == '__main__':
-    n = int(input())
-    oldest = datetime(2014, 9, 7)
-    youngest = datetime(1814, 9, 6)
-    datetimes = [youngest, oldest]
+    minBirth, maxBirth = datetime(1814, 9, 6), datetime(2014, 9, 6)
+    oldest, youngest = maxBirth, minBirth
     valid_count = 0
-    year_now, month_now, day_now = list(map(int, '2014/9/6'.split('/')))
-    for i in range(n):
+    for i in range(int(input())):
         name, birthday = input().split()
         birthday = datetime(*list(map(int, birthday.split('/'))))
-        # 过滤晚于 2014/9/6 和 超过200岁（即早于 1814/9/6）
-        if birthday < datetimes[0] or birthday > datetimes[1]:
-            continue
-        valid_count += 1
-        if birthday < oldest:
-            oldest = birthday
-            oldest_name = name
-        if birthday > youngest:
-            youngest = birthday
-            youngest_name = name
-    print(' '.join(list(map(str, [valid_count, oldest_name, youngest_name]))))
+        # 生日在 1814/9/6 ~ 2014/9/6
+        if minBirth <= birthday <= maxBirth:
+            valid_count += 1
+            if birthday < oldest:
+                oldest = birthday
+                oldest_name = name
+            if birthday > youngest:
+                youngest = birthday
+                youngest_name = name
+    if valid_count == 0:
+        print(0)
+    else:
+        print(' '.join(list(map(str, [valid_count, oldest_name, youngest_name]))))
