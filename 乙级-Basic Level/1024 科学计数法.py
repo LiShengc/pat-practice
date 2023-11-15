@@ -20,7 +20,7 @@
 if __name__ == '__main__':
     n = input()
     base, power = n.split('E')
-    signal, b = '-' if base[0] == '-' else '', base[1:]
+    sign, b = '-' if base[0] == '-' else '', base[1:]
     p = int(power)
     if p > 0:
         i, f = b.split('.')
@@ -34,4 +34,4 @@ if __name__ == '__main__':
         n = '0.' + b.zfill(abs(p) + len(b) - 1)
     else:
         n = b
-    print(signal + str(n))
+    print(sign + str(n))
