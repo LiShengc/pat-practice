@@ -20,11 +20,7 @@ if __name__ == '__main__':
     n = input()
     n_str = ''
     index = len(n)
-    for digit in n:
-        digit = int(digit)
-        if index == 1:
-            n_str += ''.join([str(i + 1) for i in range(digit)])
-        else:
-            n_str += ('B' if index == 3 else 'S') * digit
+    for i, digit in enumerate(list(map(int, n))):
+        n_str += ''.join([str(j + 1) for j in range(digit)]) if index == 1 else ('B' if index == 3 else 'S') * digit
         index -= 1
     print(n_str)

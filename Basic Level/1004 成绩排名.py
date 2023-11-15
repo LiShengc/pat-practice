@@ -22,10 +22,7 @@ Joe Math990112
 '''
 
 if __name__ == '__main__':
-    best_score = 0
-    best_student_info = None
-    worst_score = 100
-    worst_student_info = None
+    best_score, worst_score = 0, 100
     for i in range(int(input())):
         info, score = input().rsplit(maxsplit=1)
         score = int(score)
@@ -35,5 +32,4 @@ if __name__ == '__main__':
         if score < worst_score:
             worst_score = score
             worst_student_info = info
-    print(best_student_info)
-    print(worst_student_info)
+    print('\n'.join([best_student_info, worst_student_info]))

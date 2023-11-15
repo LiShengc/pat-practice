@@ -13,14 +13,4 @@ Come I Here World Hello
 '''
 
 if __name__ == '__main__':
-    print(' '.join(input().split(' ')[::-1]))
-
-    # sentence = input().replace('\n', ' ')
-    # words = sentence.split(' ')
-    # words.reverse()
-    # for i, word in enumerate(words):
-    #     if i == len(words) - 1:
-    #         end = '\n'
-    #     else:
-    #         end = ' '
-    #     print(word, end=end)
+    print(' '.join(input().split()[::-1]))

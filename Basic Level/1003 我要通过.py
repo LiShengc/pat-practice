@@ -34,6 +34,8 @@ NO
 NO
 NO
 '''
+
+
 def rule(string):
     return rule1(string) and (rule2(string) or rule3(string))
 
@@ -56,17 +58,12 @@ def rule2(string):
         return False
 
     index_PAT = string.index('PAT')
-    x1 = string[:index_PAT]
-    x2 = string[index_PAT + 3:]
-    if x1 != x2:
-        return False
-    else:
-        return True if x1.replace('A', '') == '' else False
+    x1, x2 = string[:index_PAT], string[index_PAT + 3:]
+    return False if x1 != x2 else (True if x1.replace('A', '') == '' else False)
 
 
 def rule3(string):
-    index_P = string.index('P')
-    index_T = string.index('T')
+    index_P, index_T = string.index('P'), string.index('T')
     count_A = len(string[index_P + 1:index_T])
     if count_A == 0:
         return False
@@ -74,8 +71,7 @@ def rule3(string):
         index_T = string.index('T')
         if string[index_T - 1] != 'A':
             return False
-        a = string[:index_P]
-        c = string[index_T + 1:]
+        a, c = string[:index_P], string[index_T + 1:]
         if len(c) < len(a):
             return False
         string = string[:index_T - 1] + string[index_T:len(string) - len(a)]
@@ -84,7 +80,4 @@ def rule3(string):
 
 
 if __name__ == '__main__':
-    n = int(input())
-    for i in range(n):
-        string = input()
-        print('YES' if rule(string) else 'NO')
+    print('\n'.join(['YES' if rule(input()) else 'NO' for i in range(int(input()))]))

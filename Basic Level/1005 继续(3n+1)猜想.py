@@ -20,15 +20,13 @@
 
 if __name__ == '__main__':
     K = int(input())
-    nums = input().split(' ')
+    nums = list(map(int, input().split()))
     no_keyword_nums = set()
     for num in nums:
-        num = int(num)
         if num in no_keyword_nums:
             continue
         while num != 1:
             num = num / 2 if num % 2 == 0 else (3 * num + 1) / 2
             no_keyword_nums.add(int(num))
-    keyword_nums = list(set(map(int, nums)).difference(no_keyword_nums))
-    keyword_nums.sort(reverse=True)
-    print(' '.join(map(str, keyword_nums)))
+    keyword_nums = list(set(nums).difference(no_keyword_nums))
+    print(' '.join(map(str, sorted(keyword_nums, reverse=True))))
